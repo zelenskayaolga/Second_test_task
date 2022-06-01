@@ -1,0 +1,53 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="number_group">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="number" type="int">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="zelenskaya.olga.89@mail.ru">
+        <insert tableName="number_group">
+            <column name="number" value="112"/>
+        </insert>
+        <insert tableName="number_group">
+            <column name="number" value="212"/>
+        </insert>
+        <insert tableName="number_group">
+            <column name="number" value="312"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="zelenskaya.olga.89@mail.ru">
+        <createTable tableName="students">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="surname" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="int">
+                <constraints foreignKeyName="group_id" references="number_group(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
